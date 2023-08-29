@@ -6,6 +6,6 @@ public class City
     public string Name { get; set; }
     public string? Description { get; set; }
 
-    public List<Publishing> Publishings { get; set; }
-    
+    public ICollection<Publishing> Publishings { get; set; } = new List<Publishing>();
+
 }

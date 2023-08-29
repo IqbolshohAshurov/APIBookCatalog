@@ -8,8 +8,8 @@ public class Author
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }
     public bool Status { get; set; }
-    
-    public List<Book> Books { get; set; }
-    public List<BookAuthor> BookAuthors { get; set; }
-    
-  }
+
+    public ICollection<Book> Books { get; set; } = new List<Book>();
+    public ICollection<BookAuthor> BookAuthors { get; set; } = new List<BookAuthor>();
+
+}

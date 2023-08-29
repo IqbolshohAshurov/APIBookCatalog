@@ -1,6 +1,5 @@
 using System.Reflection;
 using BookCatalogAPI.Models;
-using BookCatalogAPI.Models.Configure;
 using Microsoft.EntityFrameworkCore;
 
 namespace BookCatalogAPI;
@@ -19,6 +18,21 @@ public class ApplicationDbContext: DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseNpgsql(@"Host=localhost;Port=5432;Database=BookCatalog;Username=postgres;Password=2359");
+    }
+
+
+    public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
+    {
+        foreach (var entry in ChangeTracker.Entries<BaseModel>())
+        {
+            switch (entry.State)
+            {
+                case EntityState.Added:
+                    entry.Entity.Id = Guid.NewGuid();
+                    break;
+            }
+        }
+        return base.SaveChangesAsync(cancellationToken);
     }
 
     protected override void OnModelCreating(ModelBuilder builder)

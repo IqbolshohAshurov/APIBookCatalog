@@ -1,7 +1,6 @@
 using AutoMapper;
 using BookCatalogAPI.Models;
 using BookCatalogAPI.Services;
-using BookCatalogAPI.Dtos;
 using BookCatalogAPI.Requests.BookRequests;
 using BookCatalogAPI.Responses;
 using FluentValidation;

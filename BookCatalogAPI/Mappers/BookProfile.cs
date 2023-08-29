@@ -1,10 +1,9 @@
 using AutoMapper;
 using BookCatalogAPI.Models;
-using BookCatalogAPI.Dtos;
 using BookCatalogAPI.Requests.BookRequests;
 using BookCatalogAPI.Responses;
 
-namespace BookCatalogAPI.Mapper;
+namespace BookCatalogAPI.Mappers;
 
 public class BookProfile: Profile
 {

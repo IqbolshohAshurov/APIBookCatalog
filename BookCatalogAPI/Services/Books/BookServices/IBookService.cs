@@ -1,9 +1,7 @@
-using BookCatalogAPI.Models;
-using BookCatalogAPI.Dtos;
 using BookCatalogAPI.Requests.BookRequests;
 using BookCatalogAPI.Responses;
 
-namespace BookCatalogAPI.Services;
+namespace BookCatalogAPI.Services.Books.BookServices;
 
 public interface IBookService
 {
