@@ -1,4 +1,4 @@
-namespace BookCatalogAPI.Dtos;
+namespace BookCatalogAPI.Requests.BookRequests;
 
 public class UpdateBookRequest
 {

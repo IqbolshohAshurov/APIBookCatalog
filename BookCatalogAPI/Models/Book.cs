@@ -17,8 +17,8 @@ public class Book
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }
     public bool Status { get; set; }
-    
-    
+
+
     public Subject Subjects { get; set; } 
     public Publishing Publishings { get; set; }
     public ICollection<Author> Authors { get; set; } = new List<Author>() ;

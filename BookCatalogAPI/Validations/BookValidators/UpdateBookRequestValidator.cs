@@ -1,4 +1,4 @@
-using BookCatalogAPI.Dtos;
+using BookCatalogAPI.Requests.BookRequests;
 using FluentValidation;
 
 namespace BookCatalogAPI.Validations.BookValidators;

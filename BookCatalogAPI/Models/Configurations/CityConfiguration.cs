@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-namespace BookCatalogAPI.Models.Configure;
+
+namespace BookCatalogAPI.Models.Configurations;
 
 public class CityConfiguration: IEntityTypeConfiguration<City>
 {

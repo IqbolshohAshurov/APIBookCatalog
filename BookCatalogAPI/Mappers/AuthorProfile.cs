@@ -3,7 +3,7 @@ using BookCatalogAPI.Models;
 using BookCatalogAPI.Requests.AuthorRequests;
 using BookCatalogAPI.Responses;
 
-namespace BookCatalogAPI.Mapper;
+namespace BookCatalogAPI.Mappers;
 
 public class AuthorProfile: Profile
 {
