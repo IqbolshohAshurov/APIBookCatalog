@@ -75,8 +75,8 @@ public class BookConfiguration : IEntityTypeConfiguration<Book>
         
         builder
             .Property(b => b.SubjectId)
-            .HasColumnType("uuid").
-            HasMaxLength(50);
+            .HasColumnType("uuid")
+            .HasMaxLength(50);
         
         builder
             .Property(b => b.PublishingId)
