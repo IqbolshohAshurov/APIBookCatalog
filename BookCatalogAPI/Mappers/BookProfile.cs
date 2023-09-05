@@ -5,34 +5,20 @@ using BookCatalogAPI.Responses;
 
 namespace BookCatalogAPI.Mappers;
 
-public class BookProfile: Profile
+public class BookProfile : Profile
 {
     public BookProfile()
     {
         CreateMap<CreateBookRequest, Book>()
-            /*.ForMember(
-                dest => dest.Id,
-                src => src.MapFrom(
-                    b => Guid.NewGuid()))
-            */.ForMember(
-                d => d.CreatedAt,
-                src => src.MapFrom(
-                    b => DateTime.Now.Date))
-            .ForMember(
-                d => d.UpdatedAt,
-                src => src.MapFrom(
-                    b => DateTime.Now.Date))
-            .ForMember(
-                dest => dest.Status,
-                src => src.MapFrom(
-                    b => true));
+            .ForMember(dest => dest.PublishingId, src => src
+                .MapFrom(b => b.PuId))
+            .ForMember(dest => dest.SubjectId, src => src
+                .MapFrom(b => b.SuId));
 
-        CreateMap<Book, BookViewModel>();
-        CreateMap<UpdateBookRequest, Book>()
-            .ForMember(
-                dest => dest.UpdatedAt,
-                src => src
-                .MapFrom(
-                    b => DateTime.Now.Date));
+        CreateMap<Book, BookViewModel>()
+            .ForMember(dest => dest.PublishingName, src => src.MapFrom(b => b.Publishing.Name))
+            .ForMember(dest => dest.SubjectName, src => src.MapFrom(b => b.Subject.Title));
+        //.ForMember(dest => dest.AuthorFullName, src => src.MapFrom(b => b.Authors.First().FirstName + " " + b.Authors.First().LastName));
+        CreateMap<UpdateBookRequest, Book>();
     }
 }

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BookCatalogAPI.Services.Subjects.SubjectServices;
 
-public class SubjectService: ISubjectService
+public class SubjectService : ISubjectService
 {
     private readonly ApplicationDbContext _dbContext;
     private readonly IMapper _mapper;
@@ -57,5 +57,4 @@ public class SubjectService: ISubjectService
         await _dbContext.SaveChangesAsync();
         return true;
     }
-
 }

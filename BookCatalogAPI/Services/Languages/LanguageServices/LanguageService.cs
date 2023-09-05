@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BookCatalogAPI.Services.Languages.LanguageServices;
 
-public class LanguageService: ILanguageService
+public class LanguageService : ILanguageService
 {
     private readonly ApplicationDbContext _dbContext;
     private readonly IMapper _mapper;
@@ -20,9 +20,9 @@ public class LanguageService: ILanguageService
     public async Task<LanguageViewModel> GetLanguageById(Guid id)
     {
         var language = await _dbContext
-            .Languages
-            .FirstOrDefaultAsync(l => l.Id == id)
-            ?? throw new Exception("Not found language");
+                           .Languages
+                           .FirstOrDefaultAsync(l => l.Id == id)
+                       ?? throw new Exception("Not found language");
         var languageViewModel = _mapper.Map(language, new LanguageViewModel());
         return languageViewModel;
     }
@@ -31,8 +31,7 @@ public class LanguageService: ILanguageService
     {
         var languages = await _dbContext.Languages.ToListAsync();
         var languageViewModels = languages
-            .Select(l => _mapper.
-                Map(l, new LanguageViewModel()))
+            .Select(l => _mapper.Map(l, new LanguageViewModel()))
             .ToList();
         return languageViewModels;
     }
@@ -65,5 +64,4 @@ public class LanguageService: ILanguageService
         await _dbContext.SaveChangesAsync();
         return true;
     }
-
 }

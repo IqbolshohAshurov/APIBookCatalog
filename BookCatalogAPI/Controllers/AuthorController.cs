@@ -1,14 +1,13 @@
 using BookCatalogAPI.Requests.AuthorRequests;
 using BookCatalogAPI.Services.Authors.AuthorServices;
 using FluentValidation;
-using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookCatalogAPI.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class AuthorController: ControllerBase
+public class AuthorController : ControllerBase
 {
     private readonly IAuthorService _authorService;
     private readonly IValidator<CreateAuthorRequest> _validatorCreateAuthorRequest;
@@ -38,23 +37,17 @@ public class AuthorController: ControllerBase
     [HttpPost]
     public async Task<IActionResult> Create(CreateAuthorRequest authorRequest)
     {
-        ValidationResult result = await _validatorCreateAuthorRequest.ValidateAsync(authorRequest);
-        if (!result.IsValid)
-        {
-            return Ok(result.Errors.Select(x => x.ErrorMessage).ToList());
-        }
+        var result = await _validatorCreateAuthorRequest.ValidateAsync(authorRequest);
+        if (!result.IsValid) return Ok(result.Errors.Select(x => x.ErrorMessage).ToList());
         return Ok(await _authorService.CreateAuthor(authorRequest));
     }
 
     [HttpPut]
     public async Task<IActionResult> Update(UpdateAuthorRequest authorRequest)
     {
-        ValidationResult result = await _validatorUpdateAuthorRequest.ValidateAsync(authorRequest);
+        var result = await _validatorUpdateAuthorRequest.ValidateAsync(authorRequest);
 
-        if (!result.IsValid)
-        {
-            return Ok(result.Errors.Select(a => a.ErrorMessage).ToList());
-        }
+        if (!result.IsValid) return Ok(result.Errors.Select(a => a.ErrorMessage).ToList());
         return Ok(await _authorService.UpdateAuthor(authorRequest));
     }
 

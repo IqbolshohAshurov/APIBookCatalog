@@ -5,7 +5,7 @@ using BookCatalogAPI.Responses;
 
 namespace BookCatalogAPI.Mappers;
 
-public class PublishingProfile: Profile
+public class PublishingProfile : Profile
 {
     public PublishingProfile()
     {
@@ -14,5 +14,4 @@ public class PublishingProfile: Profile
 
         CreateMap<Publishing, PublishingViewModel>();
     }
-
 }

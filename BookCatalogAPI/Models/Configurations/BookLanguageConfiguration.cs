@@ -3,14 +3,14 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace BookCatalogAPI.Models.Configurations;
 
-public class BookLanguageConfiguration: IEntityTypeConfiguration<BookLanguage>
+public class BookLanguageConfiguration : IEntityTypeConfiguration<BookLanguage>
 {
     public void Configure(EntityTypeBuilder<BookLanguage> builder)
     {
         builder
             .HasKey(bl => bl.Id)
             .HasName("PK_BookLanguageID");
-        
+
         builder
             .Property(bl => bl.Id)
             .HasColumnType("uuid")
@@ -33,16 +33,5 @@ public class BookLanguageConfiguration: IEntityTypeConfiguration<BookLanguage>
             .HasOne(bl => bl.Language)
             .WithMany(l => l.BookLanguages)
             .HasForeignKey(bl => bl.LanguageId);
-
-
-
-
-
-
-
-
-
-
-
     }
 }

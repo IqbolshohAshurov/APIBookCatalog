@@ -5,7 +5,7 @@ using BookCatalogAPI.Responses;
 
 namespace BookCatalogAPI.Mappers;
 
-public class AuthorProfile: Profile
+public class AuthorProfile : Profile
 {
     public AuthorProfile()
     {

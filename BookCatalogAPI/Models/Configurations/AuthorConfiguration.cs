@@ -10,22 +10,22 @@ public class AuthorConfiguration : IEntityTypeConfiguration<Author>
         builder
             .HasKey(a => a.Id)
             .HasName("PK_AuthorID");
-        
+
         builder
-            .HasIndex(a => new  {a.FirstName, a.LastName})
+            .HasIndex(a => new { a.FirstName, a.LastName })
             .HasDatabaseName("Key_Forename");
-        
+
         builder
             .Property(a => a.Id)
             .HasColumnType("uuid")
             .HasColumnOrder(0);
-        
+
         builder
             .Property(a => a.FirstName)
             .HasColumnName("name")
             .HasColumnType("text")
             .HasMaxLength(50);
-        
+
         builder.Property(a => a.LastName)
             .HasColumnName("forename")
             .HasColumnType("text")
@@ -40,13 +40,10 @@ public class AuthorConfiguration : IEntityTypeConfiguration<Author>
             .Property(a => a.UpdatedAt)
             .HasColumnType("date")
             .HasPrecision(8);
-        
+
         builder
             .Property(a => a.Status)
             .HasColumnType("boolean")
             .HasDefaultValue("true");
-        
-        
-        
-    }    
+    }
 }

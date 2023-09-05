@@ -6,10 +6,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BookCatalogAPI.Services.Cities.CityServices;
 
-public class CityService: ICityService
+public class CityService : ICityService
 {
     private readonly ApplicationDbContext _dbContext;
     private readonly IMapper _mapper;
+
     public CityService(ApplicationDbContext dbContext, IMapper mapper)
     {
         _dbContext = dbContext;
@@ -19,10 +20,10 @@ public class CityService: ICityService
     public async Task<CityViewModel> GetCityById(Guid id)
     {
         var city = await _dbContext
-            .Cities
-            .AsNoTracking()
-            .FirstOrDefaultAsync(c => c.Id == id)
-            ?? throw new Exception("Not Found");
+                       .Cities
+                       .AsNoTracking()
+                       .FirstOrDefaultAsync(c => c.Id == id)
+                   ?? throw new Exception("Not Found");
 
         var cityViewModel = _mapper.Map(city, new CityViewModel());
         return cityViewModel;
@@ -61,9 +62,9 @@ public class CityService: ICityService
     public async Task<bool> DeleteCity(Guid id)
     {
         var city = await _dbContext
-            .Cities
-            .FirstOrDefaultAsync(c => c.Id == id) ??
-        throw new Exception("Language is not deleted");
+                       .Cities
+                       .FirstOrDefaultAsync(c => c.Id == id) ??
+                   throw new Exception("City is not deleted");
         _dbContext.Cities.Remove(city);
         await _dbContext.SaveChangesAsync();
         return true;

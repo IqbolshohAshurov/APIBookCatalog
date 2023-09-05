@@ -6,7 +6,7 @@ namespace BookCatalogAPI.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class PublishingController: ControllerBase
+public class PublishingController : ControllerBase
 {
     private readonly IPublishingService _publishingService;
 
@@ -44,5 +44,4 @@ public class PublishingController: ControllerBase
     {
         return Ok(await _publishingService.DeletePublishing(id));
     }
-
 }
