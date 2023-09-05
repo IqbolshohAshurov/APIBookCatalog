@@ -1,4 +1,3 @@
-using BookCatalogAPI.Services;
 using BookCatalogAPI.Requests.BookRequests;
 using BookCatalogAPI.Services.Books.BookServices;
 using FluentValidation;
@@ -8,13 +7,14 @@ namespace BookCatalogAPI.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-
-public class BookController: ControllerBase
+public class BookController : ControllerBase
 {
     private readonly IBookService _bookService;
     private readonly IValidator<CreateBookRequest> _validator;
     private readonly IValidator<UpdateBookRequest> _validatorWithId;
-    public BookController(IBookService bookService, IValidator<CreateBookRequest> validator, IValidator<UpdateBookRequest> validatorWithId)
+
+    public BookController(IBookService bookService, IValidator<CreateBookRequest> validator,
+        IValidator<UpdateBookRequest> validatorWithId)
     {
         _validator = validator;
         _validatorWithId = validatorWithId;
@@ -37,10 +37,7 @@ public class BookController: ControllerBase
     public async Task<IActionResult> Create(CreateBookRequest createBookRequest)
     {
         var result = await _validator.ValidateAsync(createBookRequest);
-        if (!result.IsValid)
-        {
-            return Ok(result.Errors.Select(x => x.ErrorMessage).ToList());
-        }
+        if (!result.IsValid) return Ok(result.Errors.Select(x => x.ErrorMessage).ToList());
         return Ok(await _bookService.CreateBook(createBookRequest));
     }
 
@@ -48,10 +45,7 @@ public class BookController: ControllerBase
     public async Task<IActionResult> Update(UpdateBookRequest updateBook)
     {
         var result = await _validatorWithId.ValidateAsync(updateBook);
-        if (!result.IsValid)
-        {
-            return Ok(result.Errors.Select(x => x.ErrorMessage).ToList());
-        }
+        if (!result.IsValid) return Ok(result.Errors.Select(x => x.ErrorMessage).ToList());
         return Ok(await _bookService.UpdateBook(updateBook));
     }
 

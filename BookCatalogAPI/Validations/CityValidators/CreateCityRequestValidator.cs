@@ -3,7 +3,7 @@ using FluentValidation;
 
 namespace BookCatalogAPI.Validations.CityValidators;
 
-public class CreateCityRequestValidator: AbstractValidator<CreateCityRequest>
+public class CreateCityRequestValidator : AbstractValidator<CreateCityRequest>
 {
     public CreateCityRequestValidator()
     {

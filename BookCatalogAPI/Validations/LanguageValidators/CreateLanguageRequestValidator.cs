@@ -3,7 +3,7 @@ using FluentValidation;
 
 namespace BookCatalogAPI.Validations.LanguageValidators;
 
-public class CreateLanguageRequestValidator: AbstractValidator<CreateLanguageRequest>
+public class CreateLanguageRequestValidator : AbstractValidator<CreateLanguageRequest>
 {
     public CreateLanguageRequestValidator()
     {

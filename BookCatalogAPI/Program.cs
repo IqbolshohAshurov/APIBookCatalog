@@ -1,6 +1,3 @@
-using System.Reflection;
-using AutoMapper;
-//using BookAPI;
 using BookCatalogAPI;
 using BookCatalogAPI.Mappers;
 using BookCatalogAPI.Requests.AuthorRequests;
@@ -9,7 +6,6 @@ using BookCatalogAPI.Requests.CityRequests;
 using BookCatalogAPI.Requests.LanguageRequests;
 using BookCatalogAPI.Requests.PublishingRequests;
 using BookCatalogAPI.Requests.SubjectRequests;
-using BookCatalogAPI.Services;
 using BookCatalogAPI.Services.Authors.AuthorServices;
 using BookCatalogAPI.Services.Books.BookServices;
 using BookCatalogAPI.Services.Cities.CityServices;
@@ -23,6 +19,7 @@ using BookCatalogAPI.Validations.LanguageValidators;
 using BookCatalogAPI.Validations.PublishingValidators;
 using BookCatalogAPI.Validations.SubjectValidators;
 using FluentValidation;
+//using BookAPI;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,14 +29,15 @@ builder.Services.AddControllers();
 //// Custome Services
 
 builder.Services.AddDbContext<ApplicationDbContext>();
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
 // add AutoMapper Profile
 builder.Services.AddAutoMapper(typeof(BookProfile),
-                                typeof(AuthorProfile),
-                                typeof(CityProfile),
-                                typeof(LanguageProfile),
-                                typeof(PublishingProfile),
-                                typeof(SubjectProfile));
+    typeof(AuthorProfile),
+    typeof(CityProfile),
+    typeof(LanguageProfile),
+    typeof(PublishingProfile),
+    typeof(SubjectProfile));
 
 // Add Fluent Validation Abstractions
 builder.Services.AddScoped<IValidator<CreateBookRequest>, CreateBookRequestValidator>();

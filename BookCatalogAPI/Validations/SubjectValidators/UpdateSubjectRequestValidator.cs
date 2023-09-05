@@ -3,7 +3,7 @@ using FluentValidation;
 
 namespace BookCatalogAPI.Validations.SubjectValidators;
 
-public class UpdateSubjectRequestValidator: AbstractValidator<UpdateSubjectRequest>
+public class UpdateSubjectRequestValidator : AbstractValidator<UpdateSubjectRequest>
 {
     public UpdateSubjectRequestValidator()
     {

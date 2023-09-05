@@ -10,5 +10,4 @@ public interface IBookService
     Task<bool> CreateBook(CreateBookRequest createBookRequest);
     Task<bool> UpdateBook(UpdateBookRequest updateBookRequest);
     Task<bool> DeleteBook(Guid id);
-    
 }

@@ -1,12 +1,11 @@
 namespace BookCatalogAPI.Models;
 
-public class Subject
+public class Subject : BaseModel
 {
-    public Guid Id { get; set; }
+    public ICollection<Book> Books = new List<Book>();
     public string Title { get; set; }
-    
-    public Guid PublishingId { get; set; }
-    
-    public Publishing Publishing { get; set; }
-    
+
+    public ICollection<Publishing> Publishings { get; set; } = new List<Publishing>();
+    public ICollection<SubjectPublishing> SubjectPublishings { get; set; } = new List<SubjectPublishing>();
+
 }

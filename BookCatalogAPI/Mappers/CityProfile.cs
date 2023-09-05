@@ -5,7 +5,7 @@ using BookCatalogAPI.Responses;
 
 namespace BookCatalogAPI.Mappers;
 
-public class CityProfile: Profile
+public class CityProfile : Profile
 {
     public CityProfile()
     {

@@ -6,7 +6,7 @@ namespace BookCatalogAPI.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class SubjectController: ControllerBase
+public class SubjectController : ControllerBase
 {
     private readonly ISubjectService _subjectService;
 
@@ -40,9 +40,8 @@ public class SubjectController: ControllerBase
     }
 
     [HttpDelete]
-    public async Task<IActionResult> delete(Guid id)
+    public async Task<IActionResult> Delete(Guid id)
     {
         return Ok(await _subjectService.DeleteSubject(id));
     }
-
 }

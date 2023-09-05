@@ -3,7 +3,7 @@ using FluentValidation;
 
 namespace BookCatalogAPI.Validations.AuthorValidators;
 
-public class CreateAuthorRequestValidator: AbstractValidator<CreateAuthorRequest>
+public class CreateAuthorRequestValidator : AbstractValidator<CreateAuthorRequest>
 
 {
     public CreateAuthorRequestValidator()

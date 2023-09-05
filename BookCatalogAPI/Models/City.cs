@@ -1,11 +1,8 @@
 namespace BookCatalogAPI.Models;
 
-public class City
+public class City : BaseModel
 {
-    public Guid Id { get; set; }
     public string Name { get; set; }
-    public string? Description { get; set; }
 
     public ICollection<Publishing> Publishings { get; set; } = new List<Publishing>();
-
 }

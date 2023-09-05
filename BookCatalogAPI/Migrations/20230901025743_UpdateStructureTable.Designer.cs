@@ -3,6 +3,7 @@ using System;
 using BookCatalogAPI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace BookCatalogAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230901025743_UpdateStructureTable")]
+    partial class UpdateStructureTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -281,6 +284,9 @@ namespace BookCatalogAPI.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<Guid>("PublishingId")
+                        .HasColumnType("uuid");
+
                     b.Property<bool>("Status")
                         .HasColumnType("boolean");
 
@@ -295,6 +301,8 @@ namespace BookCatalogAPI.Migrations
                     b.HasKey("Id")
                         .HasName("PK_GenreID");
 
+                    b.HasIndex("PublishingId");
+
                     b.HasIndex("Title")
                         .IsUnique()
                         .HasDatabaseName("Key_TitleGenre");
@@ -302,33 +310,10 @@ namespace BookCatalogAPI.Migrations
                     b.ToTable("Subjects");
                 });
 
-            modelBuilder.Entity("BookCatalogAPI.Models.SubjectPublishing", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid")
-                        .HasColumnOrder(0);
-
-                    b.Property<Guid>("PublishingId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("SubjectId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("Id")
-                        .HasName("PK_SubjectPublishing");
-
-                    b.HasIndex("PublishingId");
-
-                    b.HasIndex("SubjectId");
-
-                    b.ToTable("SubjectPublishings", (string)null);
-                });
-
             modelBuilder.Entity("BookCatalogAPI.Models.Book", b =>
                 {
                     b.HasOne("BookCatalogAPI.Models.Publishing", "Publishing")
-                        .WithMany("Books")
+                        .WithMany()
                         .HasForeignKey("PublishingId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -393,23 +378,15 @@ namespace BookCatalogAPI.Migrations
                     b.Navigation("City");
                 });
 
-            modelBuilder.Entity("BookCatalogAPI.Models.SubjectPublishing", b =>
+            modelBuilder.Entity("BookCatalogAPI.Models.Subject", b =>
                 {
                     b.HasOne("BookCatalogAPI.Models.Publishing", "Publishing")
-                        .WithMany("SubjectPublishings")
+                        .WithMany("Subjects")
                         .HasForeignKey("PublishingId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BookCatalogAPI.Models.Subject", "Subject")
-                        .WithMany("SubjectPublishings")
-                        .HasForeignKey("SubjectId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Publishing");
-
-                    b.Navigation("Subject");
                 });
 
             modelBuilder.Entity("BookCatalogAPI.Models.Author", b =>
@@ -436,14 +413,7 @@ namespace BookCatalogAPI.Migrations
 
             modelBuilder.Entity("BookCatalogAPI.Models.Publishing", b =>
                 {
-                    b.Navigation("Books");
-
-                    b.Navigation("SubjectPublishings");
-                });
-
-            modelBuilder.Entity("BookCatalogAPI.Models.Subject", b =>
-                {
-                    b.Navigation("SubjectPublishings");
+                    b.Navigation("Subjects");
                 });
 #pragma warning restore 612, 618
         }

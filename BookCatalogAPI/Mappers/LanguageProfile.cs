@@ -5,7 +5,7 @@ using BookCatalogAPI.Responses;
 
 namespace BookCatalogAPI.Mappers;
 
-public class LanguageProfile: Profile
+public class LanguageProfile : Profile
 {
     public LanguageProfile()
     {
@@ -14,5 +14,4 @@ public class LanguageProfile: Profile
 
         CreateMap<Language, LanguageViewModel>();
     }
-
 }

@@ -16,12 +16,12 @@ public class BookConfiguration : IEntityTypeConfiguration<Book>
             .HasMany(b => b.Languages)
             .WithMany(l => l.Books)
             .UsingEntity<BookLanguage>(j => j.ToTable("BookLanguage"));
-            
+
 
         builder
             .HasKey(b => b.Id)
             .HasName("PK_BookID");
-        
+
         builder
             .HasIndex(b => b.Name)
             .HasDatabaseName("Key_BookName");
@@ -35,25 +35,25 @@ public class BookConfiguration : IEntityTypeConfiguration<Book>
             .Property(b => b.Name)
             .HasColumnType("text")
             .HasMaxLength(100);
-        
+
         builder
             .Property(b => b.CountPage)
             .HasColumnType("int")
             .HasMaxLength(5);
-        
+
         builder
             .Property(b => b.YearOfPublication)
-            .HasColumnType("date")
+            .HasColumnType("text")
             .HasPrecision(4);
-        
+
         builder
             .Property(b => b.Description)
             .HasColumnType("text");
-        
+
         builder
             .Property(b => b.Photo)
             .HasColumnType("text");
-        
+
         builder
             .Property(b => b.Isbn)
             .HasColumnType("text")
@@ -62,32 +62,26 @@ public class BookConfiguration : IEntityTypeConfiguration<Book>
             .HasIndex(b => b.Isbn)
             .HasDatabaseName("UniqueKey_ISBN")
             .IsUnique();
-        
-        builder
-            .Property(b => b.Status)
-            .HasColumnType("boolean")
-            .HasDefaultValue("true");
-        
+
         builder
             .Property(b => b.Edition)
             .HasDefaultValue("1")
             .HasColumnType("smallint");
-        
+
         builder
             .Property(b => b.SubjectId)
-            .HasColumnType("uuid").
-            HasMaxLength(50);
-        
+            .HasColumnType("uuid").HasMaxLength(50);
+
         builder
             .Property(b => b.PublishingId)
             .HasColumnType("uuid")
             .HasMaxLength(50);
-        
+
         builder
             .Property(b => b.CreatedAt)
             .HasColumnType("date")
             .HasPrecision(8);
-        
+
         builder
             .Property(b => b.UpdatedAt)
             .HasColumnType("date")
